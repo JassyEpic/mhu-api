@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_mobilheime_datenblatts",
+  "info": {
+    "displayName": "Datenblatt",
+    "icon": "filePdf"
+  },
+  "options": {},
+  "attributes": {
+    "datasheet": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  },
+  "config": {}
+}

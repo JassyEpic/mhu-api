@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "modellreihen",
+  "info": {
+    "singularName": "modellreihe",
+    "pluralName": "modellreihen",
+    "displayName": "Modellreihe"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "mobilheims": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::mobilheim.mobilheim",
+      "inversedBy": "modellreihes"
+    },
+    "hersteller": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::hersteller.hersteller",
+      "inversedBy": "modellreihes"
+    }
+  }
+}

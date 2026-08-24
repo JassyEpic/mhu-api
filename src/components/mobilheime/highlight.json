@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_mobilheime_highlights",
+  "info": {
+    "displayName": "highlight",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

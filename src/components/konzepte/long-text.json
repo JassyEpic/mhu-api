@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_konzepte_long_texts",
+  "info": {
+    "displayName": "Long Text",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "text": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

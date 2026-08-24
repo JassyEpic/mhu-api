@@ -1,0 +1,99 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mobilheime",
+  "info": {
+    "singularName": "mobilheim",
+    "pluralName": "mobilheime",
+    "displayName": "Mobilheim"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name"
+    },
+    "mainImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "highlights": {
+      "type": "dynamiczone",
+      "components": [
+        "mobilheime.highlight"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "length": {
+      "type": "decimal"
+    },
+    "width": {
+      "type": "decimal"
+    },
+    "height": {
+      "type": "decimal"
+    },
+    "area": {
+      "type": "decimal"
+    },
+    "beds": {
+      "type": "integer"
+    },
+    "baths": {
+      "type": "integer"
+    },
+    "layout": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "video": {
+      "type": "component",
+      "component": "mobilheime.youtube-video",
+      "repeatable": true
+    },
+    "buttons": {
+      "type": "dynamiczone",
+      "components": [
+        "mobilheime.datenblatt",
+        "mobilheime.links",
+        "mobilheime.360-video"
+      ]
+    },
+    "hersteller": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::hersteller.hersteller",
+      "inversedBy": "mobilheims"
+    },
+    "modellreihes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::modellreihe.modellreihe",
+      "mappedBy": "mobilheims"
+    },
+    "persons": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_mobilheime_360_videos",
+  "info": {
+    "displayName": "360-Video",
+    "icon": "eye"
+  },
+  "options": {},
+  "attributes": {
+    "videoLink": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

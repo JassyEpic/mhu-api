@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "concepts",
+  "info": {
+    "singularName": "concept",
+    "pluralName": "concepts",
+    "displayName": "Konzept"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "dynamiczone",
+      "components": [
+        "konzepte.image",
+        "konzepte.long-text"
+      ]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "detailView": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "buttons": {
+      "type": "dynamiczone",
+      "components": [
+        "mobilheime.links",
+        "mobilheime.360-video",
+        "mobilheime.datenblatt"
+      ]
+    },
+    "video": {
+      "type": "component",
+      "component": "mobilheime.youtube-video",
+      "repeatable": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_mobilheime_links",
+  "info": {
+    "displayName": "Links",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "linkTo": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

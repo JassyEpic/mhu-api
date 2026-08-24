@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_mobilheime_youtube_videos",
+  "info": {
+    "displayName": "YoutubeVideo",
+    "icon": "eye"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "videoId": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

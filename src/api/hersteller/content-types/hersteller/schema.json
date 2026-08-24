@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "herstellers",
+  "info": {
+    "singularName": "hersteller",
+    "pluralName": "herstellers",
+    "displayName": "Hersteller"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mobilheims": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::mobilheim.mobilheim",
+      "mappedBy": "hersteller"
+    },
+    "modellreihes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::modellreihe.modellreihe",
+      "mappedBy": "hersteller"
+    }
+  }
+}
