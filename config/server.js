@@ -1,7 +1,7 @@
 module.exports = ({ env }) => ({
   host: env("HOST", "0.0.0.0"),
   port: env.int("PORT", 1337),
-  url: env("FRONTEND_URL", "http://mobilheim-union.de"),
+  url: env("FRONTEND_URL", "http://api.mobilheim-union.de"),
   app: {
     keys: env.array("APP_KEYS"),
   },
