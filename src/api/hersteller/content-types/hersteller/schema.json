@@ -21,17 +21,36 @@
         "images"
       ]
     },
-    "mobilheims": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::mobilheim.mobilheim",
-      "mappedBy": "hersteller"
+    "heroImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "description": {
+      "type": "text"
     },
     "modellreihes": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::modellreihe.modellreihe",
       "mappedBy": "hersteller"
+    },
+    "mobilheims": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::mobilheim.mobilheim",
+      "mappedBy": "hersteller"
+    },
+    "konzepts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::concept.concept",
+      "mappedBy": "herstellers"
     }
   }
 }

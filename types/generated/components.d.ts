@@ -23,6 +23,16 @@ export interface KonzepteLongText extends Struct.ComponentSchema {
   };
 }
 
+export interface KonzepteName extends Struct.ComponentSchema {
+  collectionName: 'components_konzepte_names';
+  info: {
+    displayName: 'name';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+  };
+}
+
 export interface Mobilheime360Video extends Struct.ComponentSchema {
   collectionName: 'components_mobilheime_360_videos';
   info: {
@@ -84,6 +94,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'konzepte.image': KonzepteImage;
       'konzepte.long-text': KonzepteLongText;
+      'konzepte.name': KonzepteName;
       'mobilheime.360-video': Mobilheime360Video;
       'mobilheime.datenblatt': MobilheimeDatenblatt;
       'mobilheime.highlight': MobilheimeHighlight;

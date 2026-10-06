@@ -50,6 +50,12 @@
       "type": "component",
       "component": "mobilheime.youtube-video",
       "repeatable": true
+    },
+    "herstellers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::hersteller.hersteller",
+      "inversedBy": "konzepts"
     }
   }
 }

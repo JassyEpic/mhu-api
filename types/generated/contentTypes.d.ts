@@ -465,6 +465,10 @@ export interface ApiConceptConcept extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+    herstellers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::hersteller.hersteller'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -494,6 +498,9 @@ export interface ApiHerstellerHersteller extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    heroImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    konzepts: Schema.Attribute.Relation<'manyToMany', 'api::concept.concept'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

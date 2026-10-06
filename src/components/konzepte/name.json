@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_konzepte_names",
+  "info": {
+    "displayName": "name"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
