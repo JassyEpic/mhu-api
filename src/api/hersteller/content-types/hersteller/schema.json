@@ -14,6 +14,10 @@
     "name": {
       "type": "string"
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
     "logo": {
       "type": "media",
       "multiple": false,
