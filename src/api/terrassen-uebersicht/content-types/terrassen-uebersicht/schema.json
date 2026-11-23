@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "terrassen_uebersicht",
+  "info": {
+    "singularName": "terrassen-uebersicht",
+    "pluralName": "terrassen-uebersichten",
+    "displayName": "Terrassen-Übersicht",
+    "description": "Texte der Seite /terrassen: Kopf, Themen-Kacheln, Linien-Vergleich und Qualitätsversprechen"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "eyebrow": { "type": "string" },
+    "titel": { "type": "string" },
+    "lead": { "type": "text" },
+    "themen": {
+      "type": "component",
+      "component": "terrassen.thema",
+      "repeatable": true
+    },
+    "vergleichTitel": { "type": "string" },
+    "vergleichText": { "type": "string" },
+    "linien": {
+      "type": "component",
+      "component": "terrassen.linie",
+      "repeatable": true
+    },
+    "versprechen": {
+      "type": "component",
+      "component": "hersteller.feature",
+      "repeatable": true
+    }
+  }
+}

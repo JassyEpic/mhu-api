@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_konstruktion_main_imgs",
+  "info": {
+    "displayName": "mainImg",
+    "icon": "landscape"
+  },
+  "options": {},
+  "attributes": {
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

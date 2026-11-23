@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gelaendermodelle",
+  "info": {
+    "singularName": "gelaendermodell",
+    "pluralName": "gelaendermodelle",
+    "displayName": "Geländer",
+    "description": "Geländer-Modelle (Casa, Pyla, Ola …) – einmal anlegen, auf Terrassen-Seiten per „Geländer-Auswahl“ wiederverwenden"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "beschreibung": {
+      "type": "string"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "neu": {
+      "type": "boolean",
+      "default": false
+    },
+    "reihenfolge": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

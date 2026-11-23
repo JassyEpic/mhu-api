@@ -35,9 +35,6 @@
         "audios"
       ]
     },
-    "description": {
-      "type": "text"
-    },
     "modellreihes": {
       "type": "relation",
       "relation": "oneToMany",
@@ -55,6 +52,71 @@
       "relation": "manyToMany",
       "target": "api::concept.concept",
       "mappedBy": "herstellers"
+    },
+    "beschreibung": {
+      "type": "blocks"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "heroTitel": {
+      "type": "string"
+    },
+    "heroText": {
+      "type": "text"
+    },
+    "markenfarbe": {
+      "type": "string",
+      "regex": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+    },
+    "introTitel": {
+      "type": "string"
+    },
+    "introBild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "introPunkte": {
+      "type": "component",
+      "component": "hersteller.feature",
+      "repeatable": true
+    },
+    "modellreihenText": {
+      "type": "text"
+    },
+    "hubTitel": {
+      "type": "string"
+    },
+    "hub": {
+      "type": "component",
+      "component": "hersteller.hub-item",
+      "repeatable": true
+    },
+    "cta": {
+      "type": "component",
+      "component": "hersteller.cta",
+      "repeatable": false
+    },
+    "designs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::design.design",
+      "mappedBy": "hersteller"
+    },
+    "konstruktionen": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::konstruktion.konstruktion",
+      "mappedBy": "hersteller"
+    },
+    "optionsgruppen": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::optionsgruppe.optionsgruppe",
+      "mappedBy": "hersteller"
     }
   }
 }

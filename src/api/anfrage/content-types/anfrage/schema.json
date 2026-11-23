@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "anfragen",
+  "info": {
+    "singularName": "anfrage",
+    "pluralName": "anfragen",
+    "displayName": "Anfrage",
+    "description": "Eingänge aus dem Kontaktformular (nicht öffentlich lesbar)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "anliegen": { "type": "string" },
+    "modell": { "type": "string" },
+    "firma": { "type": "string" },
+    "anrede": { "type": "string" },
+    "vorname": { "type": "string", "required": true },
+    "nachname": { "type": "string", "required": true },
+    "email": { "type": "email", "required": true },
+    "telefon": { "type": "string" },
+    "strasse": { "type": "string" },
+    "plz": { "type": "string" },
+    "ort": { "type": "string" },
+    "nachricht": { "type": "text", "required": true },
+    "rueckruf": { "type": "boolean", "default": false },
+    "newsletter": { "type": "boolean", "default": false },
+    "datenschutz": { "type": "boolean", "default": false },
+    "bearbeitet": { "type": "boolean", "default": false },
+    "weiterleitung": { "type": "text" }
+  }
+}

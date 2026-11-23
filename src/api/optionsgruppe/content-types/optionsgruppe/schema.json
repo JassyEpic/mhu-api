@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "optionsgruppen",
+  "info": {
+    "singularName": "optionsgruppe",
+    "pluralName": "optionsgruppen",
+    "displayName": "Optionen",
+    "description": "Optionen & Ausstattungspakete je Hersteller; ohne Modellreihe gilt ein Eintrag für alle Modelle"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titel": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "titel"
+    },
+    "kurzbeschreibung": {
+      "type": "text"
+    },
+    "reihenfolge": {
+      "type": "integer",
+      "default": 0
+    },
+    "hersteller": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::hersteller.hersteller",
+      "inversedBy": "optionsgruppen"
+    },
+    "modellreihen": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::modellreihe.modellreihe",
+      "inversedBy": "optionsgruppen"
+    },
+    "inhalt": {
+      "type": "dynamiczone",
+      "components": [
+        "design.beschreibung",
+        "hersteller.feature",
+        "design.details",
+        "design.galerie",
+        "mobilheime.datenblatt"
+      ]
+    }
+  }
+}

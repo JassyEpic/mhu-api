@@ -12,7 +12,13 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "seed:services": "node scripts/seed-services.js",
+    "seed:terrassen": "node scripts/seed-terrassen.js",
+    "terrassen:themen": "node scripts/terrassen-themen.js",
+    "seed:terrassen-uebersicht": "node scripts/seed-terrassen-uebersicht.js",
+    "seed:impressum": "node scripts/seed-impressum.js",
+    "seed:datenschutz": "node scripts/seed-datenschutz.js"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.47.0",

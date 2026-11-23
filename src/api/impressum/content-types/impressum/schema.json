@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "impressum",
+  "info": {
+    "singularName": "impressum",
+    "pluralName": "impressums",
+    "displayName": "Impressum",
+    "description": "Text der Seite /impressum – Überschriften im Rich Text werden übernommen"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titel": {
+      "type": "string",
+      "required": true
+    },
+    "stand": {
+      "type": "date"
+    },
+    "inhalt": {
+      "type": "blocks"
+    }
+  }
+}

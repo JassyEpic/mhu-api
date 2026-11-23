@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "datenschutz",
+  "info": {
+    "singularName": "datenschutz",
+    "pluralName": "datenschutzerklaerungen",
+    "displayName": "Datenschutz",
+    "description": "Datenschutzerklärung unter /datenschutz – Überschriften (H2) bilden das Inhaltsverzeichnis"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titel": {
+      "type": "string",
+      "required": true
+    },
+    "stand": {
+      "type": "date"
+    },
+    "inhalt": {
+      "type": "blocks"
+    }
+  }
+}

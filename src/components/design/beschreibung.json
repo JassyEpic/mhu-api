@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_design_beschreibungs",
+  "info": {
+    "displayName": "Textblock",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "beschreibung": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

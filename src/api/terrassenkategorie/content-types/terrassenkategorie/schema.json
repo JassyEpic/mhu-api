@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "terrassenkategorien",
+  "info": {
+    "singularName": "terrassenkategorie",
+    "pluralName": "terrassenkategorien",
+    "displayName": "Terrassen",
+    "description": "Terrassen-Bereiche unter /terrassen (Wohnterrassen, Podien, Gartenhäuser …)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titel": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "titel",
+      "required": true
+    },
+    "thema": {
+      "type": "enumeration",
+      "enum": [
+        "Terrassen",
+        "Ueberdachungen",
+        "Gartenhaeuser",
+        "Zubehoer",
+        "Massanfertigung"
+      ],
+      "default": "Terrassen",
+      "required": true
+    },
+    "icon": {
+      "type": "string"
+    },
+    "kurzbeschreibung": {
+      "type": "text"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "reihenfolge": {
+      "type": "integer",
+      "default": 0
+    },
+    "inhalt": {
+      "type": "dynamiczone",
+      "components": [
+        "design.beschreibung",
+        "terrassen.produkt",
+        "terrassen.tabelle",
+        "terrassen.gelaender-auswahl",
+        "design.details",
+        "design.galerie",
+        "mobilheime.datenblatt",
+        "shared.link-button"
+      ]
+    }
+  }
+}

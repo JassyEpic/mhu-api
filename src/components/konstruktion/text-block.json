@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_konstruktion_text_blocks",
+  "info": {
+    "displayName": "Text-Block",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_design_galeries",
+  "info": {
+    "displayName": "Galerie",
+    "icon": "landscape"
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "bilder": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "beschreibung": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

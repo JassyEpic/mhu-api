@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_hersteller_features",
+  "info": {
+    "displayName": "Feature",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

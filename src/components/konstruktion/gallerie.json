@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_konstruktion_galleries",
+  "info": {
+    "displayName": "Gallerie",
+    "icon": "landscape"
+  },
+  "options": {},
+  "attributes": {
+    "bilder": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "audios",
+        "files"
+      ]
+    }
+  },
+  "config": {}
+}

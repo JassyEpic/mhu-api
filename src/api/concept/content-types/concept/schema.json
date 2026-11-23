@@ -56,6 +56,21 @@
       "relation": "manyToMany",
       "target": "api::hersteller.hersteller",
       "inversedBy": "konzepts"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "kurzbeschreibung": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "punkte": {
+      "type": "component",
+      "component": "mobilheime.highlight",
+      "repeatable": true
     }
   }
 }
