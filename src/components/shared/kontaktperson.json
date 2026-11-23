@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_kontaktpersonen",
+  "info": {
+    "displayName": "Kontaktperson",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "rolle": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "telefon": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

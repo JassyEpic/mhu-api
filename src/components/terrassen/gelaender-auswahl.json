@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_terrassen_gelaender_auswahl",
+  "info": {
+    "displayName": "Geländer-Auswahl",
+    "icon": "bulletList",
+    "description": "Zeigt ausgewählte Geländer aus der Collection „Geländer“"
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string",
+      "default": "Unsere Geländer"
+    },
+    "text": {
+      "type": "text"
+    },
+    "gelaender": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::gelaendermodell.gelaendermodell"
+    }
+  },
+  "config": {}
+}

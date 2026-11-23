@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_terrassen_linien",
+  "info": {
+    "displayName": "Linie (Vergleich)",
+    "icon": "layout",
+    "description": "Eine Terrassen-Linie im Vergleich auf der Übersicht"
+  },
+  "options": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "claim": { "type": "string" },
+    "modelle": { "type": "string" },
+    "holz": { "type": "string" },
+    "tiefen": { "type": "string" },
+    "laengen": { "type": "string" },
+    "dach": { "type": "string" },
+    "besonders": { "type": "string" },
+    "bereich": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::terrassenkategorie.terrassenkategorie"
+    }
+  },
+  "config": {}
+}

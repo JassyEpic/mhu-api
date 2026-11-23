@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_terrassen_themen",
+  "info": {
+    "displayName": "Thema",
+    "icon": "apps",
+    "description": "Ein Thema der Terrassenwelt (Kachel auf der Übersicht, Überschrift im Menü)"
+  },
+  "options": {},
+  "attributes": {
+    "thema": {
+      "type": "enumeration",
+      "enum": ["Terrassen", "Ueberdachungen", "Gartenhaeuser", "Zubehoer", "Massanfertigung"],
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "lead": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  },
+  "config": {}
+}

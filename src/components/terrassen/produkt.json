@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_terrassen_produkte",
+  "info": {
+    "displayName": "Terrassen-Produkt",
+    "icon": "store",
+    "description": "Ein Terrassen-/Zubehör-Modell mit Bildern, Beschreibung und Merkmalen"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "untertitel": {
+      "type": "string"
+    },
+    "bilder": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
+    "beschreibung": {
+      "type": "blocks"
+    },
+    "merkmale": {
+      "type": "component",
+      "component": "mobilheime.highlight",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_terrassen_tabellen",
+  "info": {
+    "displayName": "Tabelle",
+    "icon": "grid",
+    "description": "Kopfzeile und Zeilen: Zellen mit | trennen, eine Zeile pro Absatz"
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "kopfzeile": {
+      "type": "string"
+    },
+    "zeilen": {
+      "type": "text"
+    },
+    "hinweis": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

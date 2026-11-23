@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_link_buttons",
+  "info": {
+    "displayName": "Link-Button",
+    "icon": "link",
+    "description": "Button zu einer internen Seite (/kontakt) oder externen Website"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "beschreibung": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
