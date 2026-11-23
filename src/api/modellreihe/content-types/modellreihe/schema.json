@@ -25,6 +25,48 @@
       "relation": "manyToOne",
       "target": "api::hersteller.hersteller",
       "inversedBy": "modellreihes"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "kurzbeschreibung": {
+      "type": "text"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "badge": {
+      "type": "string"
+    },
+    "hervorgehoben": {
+      "type": "boolean",
+      "default": false
+    },
+    "beschreibung": {
+      "type": "blocks"
+    },
+    "designs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::design.design",
+      "mappedBy": "modellreihen"
+    },
+    "konstruktionen": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::konstruktion.konstruktion",
+      "mappedBy": "modellreihen"
+    },
+    "optionsgruppen": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::optionsgruppe.optionsgruppe",
+      "mappedBy": "modellreihen"
     }
   }
 }

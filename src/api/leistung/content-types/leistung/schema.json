@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "leistungen",
+  "info": {
+    "singularName": "leistung",
+    "pluralName": "leistungen",
+    "displayName": "Service",
+    "description": "Service-Seiten (Gebrauchte Mobilheime, Besichtigung, After-Sales …) unter /services"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titel": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "titel",
+      "required": true
+    },
+    "icon": {
+      "type": "string"
+    },
+    "kurzbeschreibung": {
+      "type": "text"
+    },
+    "reihenfolge": {
+      "type": "integer",
+      "default": 0
+    },
+    "externerLink": {
+      "type": "string"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "inhalt": {
+      "type": "dynamiczone",
+      "components": [
+        "design.beschreibung",
+        "design.details",
+        "design.galerie",
+        "shared.link-button",
+        "shared.kontaktperson"
+      ]
+    }
+  }
+}

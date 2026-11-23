@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_hersteller_ctas",
+  "info": {
+    "displayName": "Call-to-Action",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "buttonLink": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

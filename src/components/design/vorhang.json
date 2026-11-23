@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_design_vorhangs",
+  "info": {
+    "displayName": "Vorhang",
+    "icon": "brush"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

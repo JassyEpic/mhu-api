@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_konstruktion_lists",
+  "info": {
+    "displayName": "list",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

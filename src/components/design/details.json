@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_design_details",
+  "info": {
+    "displayName": "Details",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "beschreibung": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

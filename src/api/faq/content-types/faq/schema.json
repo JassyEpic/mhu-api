@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faqs",
+  "info": {
+    "singularName": "faq",
+    "pluralName": "faqs",
+    "displayName": "FAQ",
+    "description": "Häufige Fragen unter /services/faq, gruppiert nach Kategorie"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "frage": {
+      "type": "string",
+      "required": true
+    },
+    "antwort": {
+      "type": "blocks"
+    },
+    "kategorie": {
+      "type": "string"
+    },
+    "reihenfolge": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

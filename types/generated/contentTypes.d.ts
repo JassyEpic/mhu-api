@@ -440,6 +440,51 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAnfrageAnfrage extends Struct.CollectionTypeSchema {
+  collectionName: 'anfragen';
+  info: {
+    description: 'Eing\u00E4nge aus dem Kontaktformular (nicht \u00F6ffentlich lesbar)';
+    displayName: 'Anfrage';
+    pluralName: 'anfragen';
+    singularName: 'anfrage';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    anliegen: Schema.Attribute.String;
+    anrede: Schema.Attribute.String;
+    bearbeitet: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    datenschutz: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    firma: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::anfrage.anfrage'
+    > &
+      Schema.Attribute.Private;
+    modell: Schema.Attribute.String;
+    nachname: Schema.Attribute.String & Schema.Attribute.Required;
+    nachricht: Schema.Attribute.Text & Schema.Attribute.Required;
+    newsletter: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    ort: Schema.Attribute.String;
+    plz: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    rueckruf: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    strasse: Schema.Attribute.String;
+    telefon: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    vorname: Schema.Attribute.String & Schema.Attribute.Required;
+    weiterleitung: Schema.Attribute.Text;
+  };
+}
+
 export interface ApiConceptConcept extends Struct.CollectionTypeSchema {
   collectionName: 'concepts';
   info: {
@@ -469,6 +514,8 @@ export interface ApiConceptConcept extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::hersteller.hersteller'
     >;
+    icon: Schema.Attribute.String;
+    kurzbeschreibung: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -477,10 +524,159 @@ export interface ApiConceptConcept extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    punkte: Schema.Attribute.Component<'mobilheime.highlight', true>;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     video: Schema.Attribute.Component<'mobilheime.youtube-video', true>;
+  };
+}
+
+export interface ApiDatenschutzDatenschutz extends Struct.SingleTypeSchema {
+  collectionName: 'datenschutz';
+  info: {
+    description: 'Datenschutzerkl\u00E4rung unter /datenschutz \u2013 \u00DCberschriften (H2) bilden das Inhaltsverzeichnis';
+    displayName: 'Datenschutz';
+    pluralName: 'datenschutzerklaerungen';
+    singularName: 'datenschutz';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    inhalt: Schema.Attribute.Blocks;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::datenschutz.datenschutz'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    stand: Schema.Attribute.Date;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDesignDesign extends Struct.CollectionTypeSchema {
+  collectionName: 'designs';
+  info: {
+    description: 'Innendesign je Modellreihe, Au\u00DFendesign gilt f\u00FCr alle Mobilheime eines Herstellers';
+    displayName: 'Design';
+    pluralName: 'designs';
+    singularName: 'design';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bereich: Schema.Attribute.Enumeration<['Innendesign', 'Aussendesign']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Innendesign'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hersteller: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::hersteller.hersteller'
+    >;
+    inhalt: Schema.Attribute.DynamicZone<
+      [
+        'design.beschreibung',
+        'design.vorhang',
+        'design.sofa',
+        'design.galerie',
+        'design.details',
+      ]
+    >;
+    kurzbeschreibung: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::design.design'
+    > &
+      Schema.Attribute.Private;
+    modellreihen: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::modellreihe.modellreihe'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    reihenfolge: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    slug: Schema.Attribute.UID<'titel'>;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
+  collectionName: 'faqs';
+  info: {
+    description: 'H\u00E4ufige Fragen unter /services/faq, gruppiert nach Kategorie';
+    displayName: 'FAQ';
+    pluralName: 'faqs';
+    singularName: 'faq';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    antwort: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    frage: Schema.Attribute.String & Schema.Attribute.Required;
+    kategorie: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    reihenfolge: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGelaendermodellGelaendermodell
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'gelaendermodelle';
+  info: {
+    description: 'Gel\u00E4nder-Modelle (Casa, Pyla, Ola \u2026) \u2013 einmal anlegen, auf Terrassen-Seiten per \u201EGel\u00E4nder-Auswahl\u201C wiederverwenden';
+    displayName: 'Gel\u00E4nder';
+    pluralName: 'gelaendermodelle';
+    singularName: 'gelaendermodell';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    beschreibung: Schema.Attribute.String;
+    bild: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::gelaendermodell.gelaendermodell'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    neu: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    publishedAt: Schema.Attribute.DateTime;
+    reihenfolge: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -495,11 +691,24 @@ export interface ApiHerstellerHersteller extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    beschreibung: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    cta: Schema.Attribute.Component<'hersteller.cta', false>;
+    designs: Schema.Attribute.Relation<'oneToMany', 'api::design.design'>;
     heroImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heroText: Schema.Attribute.Text;
+    heroTitel: Schema.Attribute.String;
+    hub: Schema.Attribute.Component<'hersteller.hub-item', true>;
+    hubTitel: Schema.Attribute.String;
+    introBild: Schema.Attribute.Media<'images'>;
+    introPunkte: Schema.Attribute.Component<'hersteller.feature', true>;
+    introTitel: Schema.Attribute.String;
+    konstruktionen: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::konstruktion.konstruktion'
+    >;
     konzepts: Schema.Attribute.Relation<'manyToMany', 'api::concept.concept'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -508,17 +717,148 @@ export interface ApiHerstellerHersteller extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images'>;
+    markenfarbe: Schema.Attribute.String;
     mobilheims: Schema.Attribute.Relation<
       'oneToMany',
       'api::mobilheim.mobilheim'
     >;
+    modellreihenText: Schema.Attribute.Text;
     modellreihes: Schema.Attribute.Relation<
       'oneToMany',
       'api::modellreihe.modellreihe'
     >;
     name: Schema.Attribute.String;
+    optionsgruppen: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::optionsgruppe.optionsgruppe'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
+    tagline: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiImpressumImpressum extends Struct.SingleTypeSchema {
+  collectionName: 'impressum';
+  info: {
+    description: 'Text der Seite /impressum \u2013 \u00DCberschriften im Rich Text werden \u00FCbernommen';
+    displayName: 'Impressum';
+    pluralName: 'impressums';
+    singularName: 'impressum';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    inhalt: Schema.Attribute.Blocks;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::impressum.impressum'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    stand: Schema.Attribute.Date;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiKonstruktionKonstruktion
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'konstruktionen';
+  info: {
+    description: 'Bauweise & Materialien je Hersteller; ohne Modellreihe gilt ein Eintrag f\u00FCr alle Modelle';
+    displayName: 'Konstruktion';
+    pluralName: 'konstruktionen';
+    singularName: 'konstruktion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hersteller: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::hersteller.hersteller'
+    >;
+    inhalt: Schema.Attribute.DynamicZone<
+      [
+        'konstruktion.text-block',
+        'konstruktion.gallerie',
+        'design.details',
+        'konstruktion.list',
+      ]
+    >;
+    kurzbeschreibung: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::konstruktion.konstruktion'
+    > &
+      Schema.Attribute.Private;
+    modellreihen: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::modellreihe.modellreihe'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    reihenfolge: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    slug: Schema.Attribute.UID<'titel'>;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLeistungLeistung extends Struct.CollectionTypeSchema {
+  collectionName: 'leistungen';
+  info: {
+    description: 'Service-Seiten (Gebrauchte Mobilheime, Besichtigung, After-Sales \u2026) unter /services';
+    displayName: 'Service';
+    pluralName: 'leistungen';
+    singularName: 'leistung';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bild: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    externerLink: Schema.Attribute.String;
+    icon: Schema.Attribute.String;
+    inhalt: Schema.Attribute.DynamicZone<
+      [
+        'design.beschreibung',
+        'design.details',
+        'design.galerie',
+        'shared.link-button',
+        'shared.kontaktperson',
+      ]
+    >;
+    kurzbeschreibung: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::leistung.leistung'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    reihenfolge: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    slug: Schema.Attribute.UID<'titel'> & Schema.Attribute.Required;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -589,13 +929,23 @@ export interface ApiModellreiheModellreihe extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    badge: Schema.Attribute.String;
+    beschreibung: Schema.Attribute.Blocks;
+    bild: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    designs: Schema.Attribute.Relation<'manyToMany', 'api::design.design'>;
     hersteller: Schema.Attribute.Relation<
       'manyToOne',
       'api::hersteller.hersteller'
     >;
+    hervorgehoben: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    konstruktionen: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::konstruktion.konstruktion'
+    >;
+    kurzbeschreibung: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -607,7 +957,157 @@ export interface ApiModellreiheModellreihe extends Struct.CollectionTypeSchema {
       'api::mobilheim.mobilheim'
     >;
     name: Schema.Attribute.String;
+    optionsgruppen: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::optionsgruppe.optionsgruppe'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOptionsgruppeOptionsgruppe
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'optionsgruppen';
+  info: {
+    description: 'Optionen & Ausstattungspakete je Hersteller; ohne Modellreihe gilt ein Eintrag f\u00FCr alle Modelle';
+    displayName: 'Optionen';
+    pluralName: 'optionsgruppen';
+    singularName: 'optionsgruppe';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hersteller: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::hersteller.hersteller'
+    >;
+    inhalt: Schema.Attribute.DynamicZone<
+      [
+        'design.beschreibung',
+        'hersteller.feature',
+        'design.details',
+        'design.galerie',
+        'mobilheime.datenblatt',
+      ]
+    >;
+    kurzbeschreibung: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::optionsgruppe.optionsgruppe'
+    > &
+      Schema.Attribute.Private;
+    modellreihen: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::modellreihe.modellreihe'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    reihenfolge: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    slug: Schema.Attribute.UID<'titel'>;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTerrassenUebersichtTerrassenUebersicht
+  extends Struct.SingleTypeSchema {
+  collectionName: 'terrassen_uebersicht';
+  info: {
+    description: 'Texte der Seite /terrassen: Kopf, Themen-Kacheln, Linien-Vergleich und Qualit\u00E4tsversprechen';
+    displayName: 'Terrassen-\u00DCbersicht';
+    pluralName: 'terrassen-uebersichten';
+    singularName: 'terrassen-uebersicht';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    eyebrow: Schema.Attribute.String;
+    lead: Schema.Attribute.Text;
+    linien: Schema.Attribute.Component<'terrassen.linie', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::terrassen-uebersicht.terrassen-uebersicht'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    themen: Schema.Attribute.Component<'terrassen.thema', true>;
+    titel: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    vergleichText: Schema.Attribute.String;
+    vergleichTitel: Schema.Attribute.String;
+    versprechen: Schema.Attribute.Component<'hersteller.feature', true>;
+  };
+}
+
+export interface ApiTerrassenkategorieTerrassenkategorie
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'terrassenkategorien';
+  info: {
+    description: 'Terrassen-Bereiche unter /terrassen (Wohnterrassen, Podien, Gartenh\u00E4user \u2026)';
+    displayName: 'Terrassen';
+    pluralName: 'terrassenkategorien';
+    singularName: 'terrassenkategorie';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bild: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icon: Schema.Attribute.String;
+    inhalt: Schema.Attribute.DynamicZone<
+      [
+        'design.beschreibung',
+        'terrassen.produkt',
+        'terrassen.tabelle',
+        'terrassen.gelaender-auswahl',
+        'design.details',
+        'design.galerie',
+        'mobilheime.datenblatt',
+        'shared.link-button',
+      ]
+    >;
+    kurzbeschreibung: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::terrassenkategorie.terrassenkategorie'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    reihenfolge: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    slug: Schema.Attribute.UID<'titel'> & Schema.Attribute.Required;
+    thema: Schema.Attribute.Enumeration<
+      [
+        'Terrassen',
+        'Ueberdachungen',
+        'Gartenhaeuser',
+        'Zubehoer',
+        'Massanfertigung',
+      ]
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Terrassen'>;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1159,10 +1659,21 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::anfrage.anfrage': ApiAnfrageAnfrage;
       'api::concept.concept': ApiConceptConcept;
+      'api::datenschutz.datenschutz': ApiDatenschutzDatenschutz;
+      'api::design.design': ApiDesignDesign;
+      'api::faq.faq': ApiFaqFaq;
+      'api::gelaendermodell.gelaendermodell': ApiGelaendermodellGelaendermodell;
       'api::hersteller.hersteller': ApiHerstellerHersteller;
+      'api::impressum.impressum': ApiImpressumImpressum;
+      'api::konstruktion.konstruktion': ApiKonstruktionKonstruktion;
+      'api::leistung.leistung': ApiLeistungLeistung;
       'api::mobilheim.mobilheim': ApiMobilheimMobilheim;
       'api::modellreihe.modellreihe': ApiModellreiheModellreihe;
+      'api::optionsgruppe.optionsgruppe': ApiOptionsgruppeOptionsgruppe;
+      'api::terrassen-uebersicht.terrassen-uebersicht': ApiTerrassenUebersichtTerrassenUebersicht;
+      'api::terrassenkategorie.terrassenkategorie': ApiTerrassenkategorieTerrassenkategorie;
       'api::tradefair.tradefair': ApiTradefairTradefair;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
