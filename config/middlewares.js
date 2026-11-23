@@ -1,4 +1,12 @@
-module.exports = [
+// Domains, von denen die Website Strapi aufrufen darf – per CORS_ORIGINS in .env überschreibbar
+// (kommagetrennt, z. B. für eine Staging-Domain)
+const CORS_DEFAULT = [
+  "https://mobilheim-union.de",
+  "https://www.mobilheim-union.de",
+  "http://localhost:5173",
+];
+
+module.exports = ({ env }) => [
   "strapi::errors",
   {
     name: "strapi::security",
@@ -16,7 +24,7 @@ module.exports = [
   {
     name: "strapi::cors",
     config: {
-      origin: ["http://localhost:5173", "https://mobilheim-union.de"],
+      origin: env.array("CORS_ORIGINS", CORS_DEFAULT),
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"],
       headers: ["Content-Type", "Authorization", "Origin", "Accept"],
       credentials: true,
