@@ -20,6 +20,7 @@ const { weiterleiten } = require('../integrationen');
 const TEXT_FIELDS = {
   anliegen: 100,
   modell: 150,
+  konfiguration: 1500, // aus dem Konfigurator, nur wenn der Kunde das Mitsenden bestätigt
   firma: 150,
   anrede: 20,
   vorname: 100,
@@ -66,8 +67,9 @@ module.exports = createCoreController('api::anfrage.anfrage', ({ strapi }) => ({
   async create(ctx) {
     const body = ctx.request.body?.data ?? {};
 
-    // Bots füllen das versteckte Feld aus oder senden sofort ab → still "Erfolg" melden
-    const tooFast = Number(body.ausfuelldauer) < MIN_FILL_MS;
+    // Bots füllen das versteckte Feld aus, senden sofort ab oder lassen die Ausfülldauer
+    // ganz weg (direkter API-Aufruf) → still "Erfolg" melden
+    const tooFast = !(Number(body.ausfuelldauer) >= MIN_FILL_MS);
     if (body.website || tooFast) {
       return ctx.send({ ok: true });
     }

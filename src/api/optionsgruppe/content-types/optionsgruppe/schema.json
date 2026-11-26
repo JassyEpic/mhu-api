@@ -27,6 +27,13 @@
       "type": "integer",
       "default": 0
     },
+    "aufModellseite": {
+      "type": "boolean",
+      "default": false
+    },
+    "konfiguratorHinweis": {
+      "type": "text"
+    },
     "hersteller": {
       "type": "relation",
       "relation": "manyToOne",

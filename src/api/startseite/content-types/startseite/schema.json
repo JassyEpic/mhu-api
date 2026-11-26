@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "startseite",
+  "info": {
+    "singularName": "startseite",
+    "pluralName": "startseiten",
+    "displayName": "Startseite",
+    "description": "Alle Texte und Bilder der Startseite: Intro, Werte, Marken-Panorama und Neuheiten"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "intro": {
+      "type": "component",
+      "component": "startseite.intro",
+      "repeatable": false
+    },
+    "werte": {
+      "type": "component",
+      "component": "startseite.werte-bereich",
+      "repeatable": false
+    },
+    "marken": {
+      "type": "component",
+      "component": "startseite.marken-bereich",
+      "repeatable": false
+    },
+    "neuheiten": {
+      "type": "component",
+      "component": "startseite.neuheiten-bereich",
+      "repeatable": false
+    }
+  }
+}

@@ -14,6 +14,7 @@
   "attributes": {
     "anliegen": { "type": "string" },
     "modell": { "type": "string" },
+    "konfiguration": { "type": "text" },
     "firma": { "type": "string" },
     "anrede": { "type": "string" },
     "vorname": { "type": "string", "required": true },

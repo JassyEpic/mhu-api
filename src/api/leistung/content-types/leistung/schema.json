@@ -46,7 +46,8 @@
         "design.details",
         "design.galerie",
         "shared.link-button",
-        "shared.kontaktperson"
+        "shared.kontaktperson",
+        "shared.hinweis"
       ]
     }
   }

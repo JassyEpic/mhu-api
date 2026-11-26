@@ -94,6 +94,21 @@
     },
     "persons": {
       "type": "string"
+    },
+    "neuheit": {
+      "type": "boolean",
+      "default": false
+    },
+    "art": {
+      "type": "enumeration",
+      "enum": ["Mobilheim", "Sanitaermodul"],
+      "default": "Mobilheim"
+    },
+    "konfigurator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::konfigurator.konfigurator",
+      "mappedBy": "mobilheim"
     }
   }
 }

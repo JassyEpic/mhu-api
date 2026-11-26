@@ -41,6 +41,7 @@ async function weclapp(data) {
   const kopf = [
     data.anliegen && `Anliegen: ${data.anliegen}`,
     data.modell && `Modell: ${data.modell}`,
+    data.konfiguration && `Konfiguration: ${data.konfiguration}`,
   ].filter(Boolean);
   const description = [...kopf, kopf.length ? '' : null, data.nachricht]
     .filter((z) => z !== null)
@@ -103,6 +104,7 @@ async function brevo(data) {
 const BESCHRIFTUNG = {
   anliegen: 'Anliegen',
   modell: 'Modell',
+  konfiguration: 'Konfiguration',
   firma: 'Firma / Campingplatz',
   anrede: 'Anrede',
   vorname: 'Vorname',
