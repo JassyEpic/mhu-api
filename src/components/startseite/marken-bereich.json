@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_startseite_marken_bereiche",
+  "info": {
+    "displayName": "Marken-Bereich",
+    "icon": "layout",
+    "description": "Panorama mit Marken und Terrassen. Karten mit „nachTrenner“ erscheinen hinter dem Trenner (z. B. Terrassen)"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "titel": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "trennerText": {
+      "type": "string"
+    },
+    "karten": {
+      "type": "component",
+      "component": "startseite.marken-karte",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

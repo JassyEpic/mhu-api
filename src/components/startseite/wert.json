@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_startseite_werte",
+  "info": {
+    "displayName": "Wert",
+    "icon": "check",
+    "description": "Eine Karte unter „Unsere Werte“. Icon = Font-Awesome-Name (z. B. handshake, leaf, shield-halved)"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "string"
+    },
+    "titel": {
+      "type": "string",
+      "required": true
+    },
+    "hervorhebung": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

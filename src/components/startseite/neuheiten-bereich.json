@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_startseite_neuheiten_bereiche",
+  "info": {
+    "displayName": "Neuheiten-Bereich",
+    "icon": "bell",
+    "description": "Welche Modelle erscheinen, steuert der Haken „neuheit“ am Mobilheim. Das Jahr wird automatisch angehängt (ab September das Folgejahr)"
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "jahrAnzeigen": {
+      "type": "boolean",
+      "default": true
+    },
+    "linkText": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "anzahl": {
+      "type": "integer",
+      "min": 1,
+      "max": 12,
+      "default": 6
+    }
+  },
+  "config": {}
+}

@@ -21,6 +21,10 @@
     },
     "beschreibung": {
       "type": "text"
+    },
+    "nebeneinander": {
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}

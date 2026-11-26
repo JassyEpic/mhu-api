@@ -1,5 +1,8 @@
 'use strict';
 
+const { seedStartseite } = require('./seed/startseite');
+const { seedOptionen } = require('./seed/optionen');
+
 // Rechte der öffentlichen Rolle (Website ohne Login). Neue Content-Types hier
 // eintragen, statt die Rechte im Admin von Hand zu setzen.
 const PUBLIC_PERMISSIONS = {
@@ -19,6 +22,8 @@ const PUBLIC_PERMISSIONS = {
   'api::terrassen-uebersicht.terrassen-uebersicht': ['find'],
   'api::impressum.impressum': ['find'],
   'api::datenschutz.datenschutz': ['find'],
+  'api::startseite.startseite': ['find'],
+  'api::konfigurator.konfigurator': ['find', 'findOne'],
   // Kontaktformular: nur anlegen, niemals lesen
   'api::anfrage.anfrage': ['create'],
 };
@@ -64,5 +69,15 @@ module.exports = {
    */
   async bootstrap({ strapi }) {
     await grantPublicPermissions(strapi);
+    try {
+      await seedStartseite(strapi);
+    } catch (err) {
+      strapi.log.error(`Startseite konnte nicht angelegt werden: ${err.message}`);
+    }
+    try {
+      await seedOptionen(strapi);
+    } catch (err) {
+      strapi.log.error(`Option „Prêt-à-meubler“ konnte nicht angelegt werden: ${err.message}`);
+    }
   },
 };

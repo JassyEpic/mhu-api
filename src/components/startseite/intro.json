@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_startseite_intros",
+  "info": {
+    "displayName": "Intro",
+    "icon": "picture",
+    "description": "Großes Bild mit Überschrift ganz oben auf der Startseite"
+  },
+  "options": {},
+  "attributes": {
+    "titel": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  },
+  "config": {}
+}

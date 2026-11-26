@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_konfigurator_gruppen",
+  "info": {
+    "displayName": "Gruppe",
+    "icon": "apps",
+    "description": "Auswahlgruppe (z. B. Front, 4 Seiten, Rahmen, Polster, Vorhänge). Gleicher Schlüssel = gleiche Gruppe in allen Dachvarianten. Exklusiv = Ebenen zeigen das ganze Haus; eine Auswahl hebt die anderer exklusiver Gruppen auf (Front ↔ 4 Seiten)"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "schluessel": {
+      "type": "string"
+    },
+    "exklusiv": {
+      "type": "boolean",
+      "default": false
+    },
+    "optionen": {
+      "type": "component",
+      "component": "konfigurator.option",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

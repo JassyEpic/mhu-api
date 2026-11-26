@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_konfigurator_optionen",
+  "info": {
+    "displayName": "Option",
+    "icon": "brush",
+    "description": "Eine Farbe/ein Muster: rundes Farbmuster und transparente Bild-Ebene. Ebene = Stapelreihenfolge (höher liegt oben)"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "farbmuster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "ebene": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "config": {}
+}

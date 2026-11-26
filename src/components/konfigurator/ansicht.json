@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_konfigurator_ansichten",
+  "info": {
+    "displayName": "Ansicht",
+    "icon": "picture",
+    "description": "Eine Vorschau (z. B. Außen mit Satteldach, Außen mit Pultdach oder Innenraum). Grundebenen liegen unter den Optionen, Deckebenen (z. B. Fenster/Türen) darüber – jeweils in dieser Reihenfolge"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "typ": {
+      "type": "enumeration",
+      "enum": ["Aussen", "Innen"],
+      "default": "Aussen",
+      "required": true
+    },
+    "dach": {
+      "type": "enumeration",
+      "enum": ["Satteldach", "Pultdach", "Flachdach"]
+    },
+    "grundebenen": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
+    "deckebenen": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
+    "gruppen": {
+      "type": "component",
+      "component": "konfigurator.gruppe",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

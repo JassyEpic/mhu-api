@@ -1,0 +1,51 @@
+{
+  "collectionName": "components_startseite_marken_karten",
+  "info": {
+    "displayName": "Marken-Karte",
+    "icon": "picture",
+    "description": "Ein Streifen im Panorama. Links intern mit „/“ beginnen (z. B. /hersteller/irm), extern mit https://"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "kategorie": {
+      "type": "string"
+    },
+    "untertitel": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "bild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "farbe": {
+      "type": "string",
+      "regex": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "link2": {
+      "type": "string"
+    },
+    "link2Text": {
+      "type": "string"
+    },
+    "nachTrenner": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}
