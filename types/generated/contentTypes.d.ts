@@ -461,6 +461,7 @@ export interface ApiAnfrageAnfrage extends Struct.CollectionTypeSchema {
     datenschutz: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     email: Schema.Attribute.Email & Schema.Attribute.Required;
     firma: Schema.Attribute.String;
+    konfiguration: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -772,6 +773,44 @@ export interface ApiImpressumImpressum extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiKonfiguratorKonfigurator
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'konfiguratoren';
+  info: {
+    description: 'Farb-Konfigurator eines Mobilheims: Ansichten (Dachvarianten, Innenraum) mit Bild-Ebenen. Import: npm run import:konfigurator';
+    displayName: 'Konfigurator';
+    pluralName: 'konfiguratoren';
+    singularName: 'konfigurator';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ansichten: Schema.Attribute.Component<'konfigurator.ansicht', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hinweis: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Die Darstellung ist unverbindlich \u2013 Farben und Materialien k\u00F6nnen in Wirklichkeit abweichen.'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::konfigurator.konfigurator'
+    > &
+      Schema.Attribute.Private;
+    mobilheim: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::mobilheim.mobilheim'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    quelle: Schema.Attribute.String;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiKonstruktionKonstruktion
   extends Struct.CollectionTypeSchema {
   collectionName: 'konstruktionen';
@@ -846,6 +885,7 @@ export interface ApiLeistungLeistung extends Struct.CollectionTypeSchema {
         'design.galerie',
         'shared.link-button',
         'shared.kontaktperson',
+        'shared.hinweis',
       ]
     >;
     kurzbeschreibung: Schema.Attribute.Text;
@@ -877,6 +917,8 @@ export interface ApiMobilheimMobilheim extends Struct.CollectionTypeSchema {
   };
   attributes: {
     area: Schema.Attribute.Decimal;
+    art: Schema.Attribute.Enumeration<['Mobilheim', 'Sanitaermodul']> &
+      Schema.Attribute.DefaultTo<'Mobilheim'>;
     baths: Schema.Attribute.Integer;
     beds: Schema.Attribute.Integer;
     buttons: Schema.Attribute.DynamicZone<
@@ -893,6 +935,10 @@ export interface ApiMobilheimMobilheim extends Struct.CollectionTypeSchema {
       'api::hersteller.hersteller'
     >;
     highlights: Schema.Attribute.DynamicZone<['mobilheime.highlight']>;
+    konfigurator: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::konfigurator.konfigurator'
+    >;
     layout: Schema.Attribute.Media<'images'>;
     length: Schema.Attribute.Decimal;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -907,6 +953,7 @@ export interface ApiMobilheimMobilheim extends Struct.CollectionTypeSchema {
       'api::modellreihe.modellreihe'
     >;
     Name: Schema.Attribute.String;
+    neuheit: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     persons: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'Name'>;
@@ -982,6 +1029,8 @@ export interface ApiOptionsgruppeOptionsgruppe
     draftAndPublish: true;
   };
   attributes: {
+    aufModellseite: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -998,6 +1047,7 @@ export interface ApiOptionsgruppeOptionsgruppe
         'mobilheime.datenblatt',
       ]
     >;
+    konfiguratorHinweis: Schema.Attribute.Text;
     kurzbeschreibung: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -1016,6 +1066,41 @@ export interface ApiOptionsgruppeOptionsgruppe
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStartseiteStartseite extends Struct.SingleTypeSchema {
+  collectionName: 'startseite';
+  info: {
+    description: 'Alle Texte und Bilder der Startseite: Intro, Werte, Marken-Panorama und Neuheiten';
+    displayName: 'Startseite';
+    pluralName: 'startseiten';
+    singularName: 'startseite';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    intro: Schema.Attribute.Component<'startseite.intro', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::startseite.startseite'
+    > &
+      Schema.Attribute.Private;
+    marken: Schema.Attribute.Component<'startseite.marken-bereich', false>;
+    neuheiten: Schema.Attribute.Component<
+      'startseite.neuheiten-bereich',
+      false
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    werte: Schema.Attribute.Component<'startseite.werte-bereich', false>;
   };
 }
 
@@ -1667,11 +1752,13 @@ declare module '@strapi/strapi' {
       'api::gelaendermodell.gelaendermodell': ApiGelaendermodellGelaendermodell;
       'api::hersteller.hersteller': ApiHerstellerHersteller;
       'api::impressum.impressum': ApiImpressumImpressum;
+      'api::konfigurator.konfigurator': ApiKonfiguratorKonfigurator;
       'api::konstruktion.konstruktion': ApiKonstruktionKonstruktion;
       'api::leistung.leistung': ApiLeistungLeistung;
       'api::mobilheim.mobilheim': ApiMobilheimMobilheim;
       'api::modellreihe.modellreihe': ApiModellreiheModellreihe;
       'api::optionsgruppe.optionsgruppe': ApiOptionsgruppeOptionsgruppe;
+      'api::startseite.startseite': ApiStartseiteStartseite;
       'api::terrassen-uebersicht.terrassen-uebersicht': ApiTerrassenUebersichtTerrassenUebersicht;
       'api::terrassenkategorie.terrassenkategorie': ApiTerrassenkategorieTerrassenkategorie;
       'api::tradefair.tradefair': ApiTradefairTradefair;

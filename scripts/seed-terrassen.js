@@ -492,7 +492,7 @@ const BEREICHE = [
       textblock(
         h('Retrofit – neu 2027'),
         p(
-          'Renovierung von Mobilheimen mit integrierter Terrasse: Wir erneuern den Terrassenbereich bestehender Mobilheime – von der Erneuerung des Bodens bis zur neuen Terrasse mit Erweiterung. Sprechen Sie uns an.',
+          'Renovierung von Mobilheimen mit integrierter Terrasse: Wir erneuern den Terrassenbereich bestehender Mobilheime – von der Erneuerung des Bodens bis zur neuen Terrasse mit Erweiterung. Kontaktieren Sie uns.',
         ),
       ),
       button('Projekt anfragen', '/kontakt?anliegen=terrassen', 'Maßanfertigung oder Retrofit besprechen'),

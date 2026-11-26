@@ -20,6 +20,7 @@ export interface DesignDetails extends Struct.ComponentSchema {
   attributes: {
     beschreibung: Schema.Attribute.Text;
     bild: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    nebeneinander: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     titel: Schema.Attribute.String;
   };
 }
@@ -102,6 +103,55 @@ export interface HerstellerHubItem extends Struct.ComponentSchema {
     link: Schema.Attribute.String;
     text: Schema.Attribute.Text;
     titel: Schema.Attribute.String;
+  };
+}
+
+export interface KonfiguratorAnsicht extends Struct.ComponentSchema {
+  collectionName: 'components_konfigurator_ansichten';
+  info: {
+    description: 'Eine Vorschau (z. B. Au\u00DFen mit Satteldach, Au\u00DFen mit Pultdach oder Innenraum). Grundebenen liegen unter den Optionen, Deckebenen (z. B. Fenster/T\u00FCren) dar\u00FCber \u2013 jeweils in dieser Reihenfolge';
+    displayName: 'Ansicht';
+    icon: 'picture';
+  };
+  attributes: {
+    dach: Schema.Attribute.Enumeration<['Satteldach', 'Pultdach', 'Flachdach']>;
+    deckebenen: Schema.Attribute.Media<'images', true>;
+    grundebenen: Schema.Attribute.Media<'images', true>;
+    gruppen: Schema.Attribute.Component<'konfigurator.gruppe', true>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    typ: Schema.Attribute.Enumeration<['Aussen', 'Innen']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Aussen'>;
+  };
+}
+
+export interface KonfiguratorGruppe extends Struct.ComponentSchema {
+  collectionName: 'components_konfigurator_gruppen';
+  info: {
+    description: 'Auswahlgruppe (z. B. Front, 4 Seiten, Rahmen, Polster, Vorh\u00E4nge). Gleicher Schl\u00FCssel = gleiche Gruppe in allen Dachvarianten. Exklusiv = Ebenen zeigen das ganze Haus; eine Auswahl hebt die anderer exklusiver Gruppen auf (Front \u2194 4 Seiten)';
+    displayName: 'Gruppe';
+    icon: 'apps';
+  };
+  attributes: {
+    exklusiv: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    optionen: Schema.Attribute.Component<'konfigurator.option', true>;
+    schluessel: Schema.Attribute.String;
+  };
+}
+
+export interface KonfiguratorOption extends Struct.ComponentSchema {
+  collectionName: 'components_konfigurator_optionen';
+  info: {
+    description: 'Eine Farbe/ein Muster: rundes Farbmuster und transparente Bild-Ebene. Ebene = Stapelreihenfolge (h\u00F6her liegt oben)';
+    displayName: 'Option';
+    icon: 'brush';
+  };
+  attributes: {
+    bild: Schema.Attribute.Media<'images'>;
+    ebene: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    farbmuster: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -243,6 +293,19 @@ export interface MobilheimeYoutubeVideo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedHinweis extends Struct.ComponentSchema {
+  collectionName: 'components_shared_hinweise';
+  info: {
+    description: 'Hervorgehobener Hinweiskasten, z. B. \u201EKeine Ausstellung vor Ort\u201C';
+    displayName: 'Hinweis';
+    icon: 'information';
+  };
+  attributes: {
+    text: Schema.Attribute.Text;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedKontaktperson extends Struct.ComponentSchema {
   collectionName: 'components_shared_kontaktpersonen';
   info: {
@@ -268,6 +331,110 @@ export interface SharedLinkButton extends Struct.ComponentSchema {
     beschreibung: Schema.Attribute.Text;
     label: Schema.Attribute.String & Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface StartseiteIntro extends Struct.ComponentSchema {
+  collectionName: 'components_startseite_intros';
+  info: {
+    description: 'Gro\u00DFes Bild mit \u00DCberschrift ganz oben auf der Startseite';
+    displayName: 'Intro';
+    icon: 'picture';
+  };
+  attributes: {
+    bild: Schema.Attribute.Media<'images'>;
+    text: Schema.Attribute.Text;
+    titel: Schema.Attribute.String;
+  };
+}
+
+export interface StartseiteMarkenBereich extends Struct.ComponentSchema {
+  collectionName: 'components_startseite_marken_bereiche';
+  info: {
+    description: 'Panorama mit Marken und Terrassen. Karten mit \u201EnachTrenner\u201C erscheinen hinter dem Trenner (z. B. Terrassen)';
+    displayName: 'Marken-Bereich';
+    icon: 'layout';
+  };
+  attributes: {
+    eyebrow: Schema.Attribute.String;
+    karten: Schema.Attribute.Component<'startseite.marken-karte', true>;
+    text: Schema.Attribute.Text;
+    titel: Schema.Attribute.String;
+    trennerText: Schema.Attribute.String;
+  };
+}
+
+export interface StartseiteMarkenKarte extends Struct.ComponentSchema {
+  collectionName: 'components_startseite_marken_karten';
+  info: {
+    description: 'Ein Streifen im Panorama. Links intern mit \u201E/\u201C beginnen (z. B. /hersteller/irm), extern mit https://';
+    displayName: 'Marken-Karte';
+    icon: 'picture';
+  };
+  attributes: {
+    bild: Schema.Attribute.Media<'images'>;
+    buttonText: Schema.Attribute.String;
+    farbe: Schema.Attribute.String;
+    kategorie: Schema.Attribute.String;
+    link: Schema.Attribute.String & Schema.Attribute.Required;
+    link2: Schema.Attribute.String;
+    link2Text: Schema.Attribute.String;
+    nachTrenner: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    text: Schema.Attribute.Text;
+    untertitel: Schema.Attribute.String;
+  };
+}
+
+export interface StartseiteNeuheitenBereich extends Struct.ComponentSchema {
+  collectionName: 'components_startseite_neuheiten_bereiche';
+  info: {
+    description: 'Welche Modelle erscheinen, steuert der Haken \u201Eneuheit\u201C am Mobilheim. Das Jahr wird automatisch angeh\u00E4ngt (ab September das Folgejahr)';
+    displayName: 'Neuheiten-Bereich';
+    icon: 'bell';
+  };
+  attributes: {
+    anzahl: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 12;
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<6>;
+    jahrAnzeigen: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    link: Schema.Attribute.String;
+    linkText: Schema.Attribute.String;
+    titel: Schema.Attribute.String;
+  };
+}
+
+export interface StartseiteWert extends Struct.ComponentSchema {
+  collectionName: 'components_startseite_werte';
+  info: {
+    description: 'Eine Karte unter \u201EUnsere Werte\u201C. Icon = Font-Awesome-Name (z. B. handshake, leaf, shield-halved)';
+    displayName: 'Wert';
+    icon: 'check';
+  };
+  attributes: {
+    hervorhebung: Schema.Attribute.String;
+    icon: Schema.Attribute.String;
+    text: Schema.Attribute.Text;
+    titel: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface StartseiteWerteBereich extends Struct.ComponentSchema {
+  collectionName: 'components_startseite_werte_bereiche';
+  info: {
+    description: '\u00DCberschrift und Karten von \u201EUnsere Werte\u201C';
+    displayName: 'Werte-Bereich';
+    icon: 'star';
+  };
+  attributes: {
+    eintraege: Schema.Attribute.Component<'startseite.wert', true>;
+    titel: Schema.Attribute.String;
   };
 }
 
@@ -379,6 +546,9 @@ declare module '@strapi/strapi' {
       'hersteller.cta': HerstellerCta;
       'hersteller.feature': HerstellerFeature;
       'hersteller.hub-item': HerstellerHubItem;
+      'konfigurator.ansicht': KonfiguratorAnsicht;
+      'konfigurator.gruppe': KonfiguratorGruppe;
+      'konfigurator.option': KonfiguratorOption;
       'konstruktion.gallerie': KonstruktionGallerie;
       'konstruktion.list': KonstruktionList;
       'konstruktion.main-img': KonstruktionMainImg;
@@ -391,8 +561,15 @@ declare module '@strapi/strapi' {
       'mobilheime.highlight': MobilheimeHighlight;
       'mobilheime.links': MobilheimeLinks;
       'mobilheime.youtube-video': MobilheimeYoutubeVideo;
+      'shared.hinweis': SharedHinweis;
       'shared.kontaktperson': SharedKontaktperson;
       'shared.link-button': SharedLinkButton;
+      'startseite.intro': StartseiteIntro;
+      'startseite.marken-bereich': StartseiteMarkenBereich;
+      'startseite.marken-karte': StartseiteMarkenKarte;
+      'startseite.neuheiten-bereich': StartseiteNeuheitenBereich;
+      'startseite.wert': StartseiteWert;
+      'startseite.werte-bereich': StartseiteWerteBereich;
       'terrassen.gelaender-auswahl': TerrassenGelaenderAuswahl;
       'terrassen.linie': TerrassenLinie;
       'terrassen.produkt': TerrassenProdukt;

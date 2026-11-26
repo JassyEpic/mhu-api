@@ -18,7 +18,10 @@
     "terrassen:themen": "node scripts/terrassen-themen.js",
     "seed:terrassen-uebersicht": "node scripts/seed-terrassen-uebersicht.js",
     "seed:impressum": "node scripts/seed-impressum.js",
-    "seed:datenschutz": "node scripts/seed-datenschutz.js"
+    "seed:datenschutz": "node scripts/seed-datenschutz.js",
+    "update:pret-a-meubler": "node scripts/update-pret-a-meubler.js",
+    "import:konfigurator": "node scripts/import-konfigurator.js",
+    "seed:modulo": "node scripts/seed-modulo.js"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.47.0",
@@ -30,7 +33,9 @@
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "htmlparser2": "^6.1.0"
+  },
   "engines": {
     "node": ">=20.0.0 <=24.x.x",
     "npm": ">=6.0.0"
